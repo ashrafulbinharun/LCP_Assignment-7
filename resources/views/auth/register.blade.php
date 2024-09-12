@@ -14,45 +14,77 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="#" method="POST">
-                <!-- Name -->
+            <form class="space-y-6" action="{{ route('register') }}" method="POST">
+                @csrf
+                {{-- name --}}
                 <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
                     <div class="mt-2">
                         <input id="name" name="name" type="text" autocomplete="name" placeholder="Alp Arslan"
-                            required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            value="{{ old('name') }}" @class([
+                                'block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6',
+                                'border-red-600 dark:border-red-800' => $errors->has('name'),
+                            ]) required />
                     </div>
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
-                <!-- Username -->
+                {{-- username  --}}
                 <div>
                     <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
+
                     <div class="mt-2">
                         <input id="username" name="username" type="text" autocomplete="username"
-                            placeholder="alparslan1029" required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            placeholder="alparslan1029" value="{{ old('username') }}" @class([
+                                'block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6',
+                                'border-red-600 dark:border-red-800' => $errors->has('username'),
+                            ])
+                            required />
                     </div>
+                    @error('username')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
-                <!-- Email -->
+                {{-- email --}}
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                     <div class="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email"
-                            placeholder="alp.arslan@mail.com" required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            placeholder="alp.arslan@mail.com" value="{{ old('email') }}" @class([
+                                'block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6',
+                                'border-red-600 dark:border-red-800' => $errors->has('email'),
+                            ])
+                            required />
                     </div>
+                    @error('email')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
-                <!-- Password -->
+                {{-- password --}}
                 <div>
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password"
-                            placeholder="••••••••" required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            placeholder="••••••••" @class([
+                                'block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6',
+                                'border-red-600 dark:border-red-800' => $errors->has('password'),
+                            ]) required />
                     </div>
+                    @error('password')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
                 <div>
@@ -65,7 +97,7 @@
 
             <p class="mt-10 text-center text-sm text-gray-500">
                 Already a member?
-                <a href="./login.html" class="font-semibold leading-6 text-black hover:text-black">Sign In</a>
+                <a href="{{ route('login') }}" class="font-semibold leading-6 text-black hover:text-black">Sign In</a>
             </p>
         </div>
     </div>

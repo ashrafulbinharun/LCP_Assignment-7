@@ -15,14 +15,23 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="#" method="POST">
+            <form class="space-y-6" action="{{ route('login') }}" method="POST" novalidate>
+                @csrf
+                {{-- email --}}
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                     <div class="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email"
-                            placeholder="bruce@wayne.com" required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            placeholder="alp.arslan@mail.com" @class([
+                                'block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6',
+                                'border-red-600 dark:border-red-800' => $errors->has('email'),
+                            ]) required />
                     </div>
+                    @error('email')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
                 <div>
@@ -32,11 +41,20 @@
                             <a href="#" class="font-semibold text-black hover:text-black">Forgot password?</a>
                         </div>
                     </div>
+
+                    {{-- password --}}
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password"
-                            placeholder="••••••••" required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            placeholder="••••••••" @class([
+                                'block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6',
+                                'border-red-600 dark:border-red-800' => $errors->has('password'),
+                            ]) required />
                     </div>
+                    @error('password')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
                 <div>
@@ -49,7 +67,7 @@
 
             <p class="mt-10 text-center text-sm text-gray-500">
                 Don't have an account yet?
-                <a href="./register.html" class="font-semibold leading-6 text-black hover:text-black">Sign Up</a>
+                <a href="{{ route('register') }}" class="font-semibold leading-6 text-black hover:text-black">Sign Up</a>
             </p>
         </div>
     </div>
