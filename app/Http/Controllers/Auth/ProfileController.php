@@ -18,7 +18,8 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = DB::table('users')
-            ->where('id', auth()->user()->id)->first();
+            ->where('id', auth()->user()->id)
+            ->first();
 
         return view('auth.edit-profile', compact('user'));
     }
