@@ -7,7 +7,7 @@
 
         {{-- Aleart --}}
         @if (session('success'))
-            <div class="flex items-center justify-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+            <div class="flex items-center justify-center p-4 mb-4 text-sm text-green-800 border-2 border-green-300 rounded-lg bg-green-50 font-medium"
                 role="alert">
                 <span class="sr-only">Success</span>
                 <div class="text-center">{{ session('success') }}</div>

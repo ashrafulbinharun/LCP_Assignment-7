@@ -1,5 +1,5 @@
 <header>
-    <!-- Navigation -->
+    {{-- Navigation  --}}
     <nav x-data="{ mobileMenuOpen: false, userMenuOpen: false }" class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
-                    <!-- Profile dropdown -->
+                    {{-- Profile dropdown  --}}
                     <div class="relative ml-3" x-data="{ open: false }">
                         <div>
                             <button @click="open = !open" type="button"
@@ -22,19 +22,25 @@
                             </button>
                         </div>
 
-                        <!-- Dropdown menu -->
+                        {{-- Dropdown menu  --}}
                         <div x-show="open" @click.away="open = false"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
-                            <a href="./profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="./edit-profile.html"
+                            <a href="{{ route('profiles.index') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
-                                tabindex="-1" id="user-menu-item-1">Edit Profile</a>
+                                tabindex="-1" id="user-menu-item-0">
+                                Your Profile
+                            </a>
+                            <a href="{{ route('profiles.edit', auth()->user()->username) }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1" id="user-menu-item-1">
+                                Edit Profile
+                            </a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                <button type="submit"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                     role="menuitem" tabindex="-1" id="user-menu-item-2">
                                     Sign out
                                 </button>
@@ -43,12 +49,12 @@
                     </div>
                 </div>
                 <div class="-mr-2 flex items-center sm:hidden">
-                    <!-- Mobile menu button -->
+                    {{-- Mobile menu button  --}}
                     <button @click="mobileMenuOpen = !mobileMenuOpen" type="button"
                         class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
                         aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
-                        <!-- Icon when menu is closed -->
+                        {{-- Icon when menu is closed  --}}
                         <svg x-show="!mobileMenuOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                             aria-hidden="true">

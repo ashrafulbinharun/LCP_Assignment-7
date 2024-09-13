@@ -3,15 +3,17 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
-class profileUpdateRequest extends FormRequest
+class ProfileUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,11 @@ class profileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['sometimes', 'required', 'string'],
+            'username' => ['sometimes', 'required', 'string', 'max:30',
+                Rule::unique('users', 'username')->ignore($this->user()->id)],
+            'password' => ['sometimes', 'nullable', Password::min(6)],
+            'bio' => ['sometimes', 'nullable', 'string', 'max:255'],
         ];
     }
 }
