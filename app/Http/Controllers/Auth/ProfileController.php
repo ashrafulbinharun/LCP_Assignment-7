@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +24,7 @@ class ProfileController extends Controller
         return view('auth.edit-profile', compact('user'));
     }
 
-    public function update(ProfileUpdateRequest $request)
+    public function update(UpdateUserRequest $request)
     {
         $validated = $request->validated();
 
