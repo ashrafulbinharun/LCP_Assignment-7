@@ -27,24 +27,38 @@
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
-                            <a href="{{ route('profiles.index') }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
-                                tabindex="-1" id="user-menu-item-0">
-                                Your Profile
-                            </a>
-                            <a href="{{ route('profiles.edit', auth()->user()->username) }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
-                                tabindex="-1" id="user-menu-item-1">
-                                Edit Profile
-                            </a>
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                                    role="menuitem" tabindex="-1" id="user-menu-item-2">
-                                    Sign out
-                                </button>
-                            </form>
+
+                            @if (auth()->check())
+                                <a href="{{ route('profiles.index') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-0">
+                                    Your Profile
+                                </a>
+                                <a href="{{ route('profiles.edit', auth()->user()->username) }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-1">
+                                    Edit Profile
+                                </a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                        role="menuitem" tabindex="-1" id="user-menu-item-2">
+                                        Sign out
+                                    </button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-0">
+                                    Login
+                                </a>
+                                <a href="{{ route('register') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-0">
+                                    Register
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
