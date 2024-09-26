@@ -12,6 +12,15 @@
             <h1 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Sign in to your account
             </h1>
+
+            {{-- Aleart --}}
+            @if (session('error'))
+                <div class="mt-4 flex items-center justify-center p-4 text-sm text-red-800 border-2 border-red-300 rounded-lg bg-red-50 font-medium"
+                    role="alert">
+                    <span class="sr-only">Success</span>
+                    <div class="text-center">{{ session('error') }}</div>
+                </div>
+            @endif
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
